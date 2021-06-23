@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-const dbConnection = require('./database/config');
+const { dbConnection } = require('../database/config');
 
 
 class Server {
@@ -16,7 +16,9 @@ class Server {
 
         }
 
-
+        this.dbConnect();
+        this.middlewares();
+        this.routes();
 
     }
 
@@ -37,7 +39,7 @@ class Server {
 
     routes(){
 
-        this.app.use( this.app.facturas, require('../routes/invoices') );
+        this.app.use( this.paths.invoices, require('../routes/invoices') );
 
     }
     
