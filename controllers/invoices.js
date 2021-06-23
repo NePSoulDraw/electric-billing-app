@@ -1,4 +1,6 @@
 const { response, request } = require('express');
+const csvToJson = require('csvtojson')
+
 const Invoice = require('../models/invoice');
 
 
@@ -98,10 +100,21 @@ const InvoiceDelete = async( req=request, res=response ) => {
     });
 }
 
+const InvoiceDeleteAll = async( req = request, res = response ) => {
+
+ await Invoice.remove({});
+
+ res.status(200).json({
+     msg: "Todas las facturas han sido eliminadas"
+ });
+
+}
+
 module.exports = {
     InvoicesGet,
     InvoiceGet,
     InvoicePost,
     InvoicePut,
-    InvoiceDelete
+    InvoiceDelete,
+    InvoiceDeleteAll
 }

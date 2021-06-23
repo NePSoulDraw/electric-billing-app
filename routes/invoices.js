@@ -6,8 +6,10 @@ const { validateFields } = require('../middlewares/validate-fields');
 const { InvoicesGet,
         InvoiceGet,
         InvoicePost,
+        InvoicePostCSV,
         InvoicePut,
-        InvoiceDelete } = require('../controllers/invoices');
+        InvoiceDelete, 
+        InvoiceDeleteAll } = require('../controllers/invoices');
 
 
 const router = Router();
@@ -45,5 +47,7 @@ router.delete('/:id', [
     check('id').custom(invoiceExists),
     validateFields
 ], InvoiceDelete);
+
+router.delete('/', InvoiceDeleteAll);
 
 module.exports = router;
