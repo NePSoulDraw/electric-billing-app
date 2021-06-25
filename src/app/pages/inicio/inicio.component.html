@@ -2,16 +2,47 @@
 
     <div class="col mb-5 pb-5 text-center">
 
+        <h4 class="mb-2 p-5">Puedes crear una factura de forma manual, en el siguiente formulario</h4>
 
-        <h4 class="mb-2 p-5">Importar documentos CSV a la base de datos</h4>
+        <form class="mt-3 mb-3 ">
+            <div class="mb-3">
+              <label class="form-label">Fecha</label>
+              <input type="text" class="form-control">
+              <div class="form-text text-danger">La fecha es obligaria</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Hora</label>
+              <input type="text" class="form-control">
+              <div class="form-text text-danger">La hora es obligatoria</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Consumo (Wh)</label>
+                <input type="text" class="form-control">
+                <div class="form-text text-danger">La información de consumo es obligatoria</div>
+              </div>
+            <div class="mb-3">
+                <label class="form-label">Precio (€/kWh)</label>
+                <input type="text" class="form-control">
+                <div class="form-text text-danger">El precio es obligatorio</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Coste/Hora (€)</label>
+                <input type="text" class="form-control">
+                <div class="form-text text-danger">El coste por hora es obligatorio</div>
+            </div>
+              
+            <button type="submit" class="btn btn-success">Crear factura</button>
+        </form>
+
+        <h4 class="mb-2 p-5">También puedes importar documentos CSV a la base de datos</h4>
 
         <button class="btn-lg btn-success ps-5 pe-5">Subir documento CSV</button>
-
-        <!-- Crear método POST manual sin usar CSV -->
 
     </div>
 
     <div class="col">
+
+        <h4 class="mb-2 p-5">Puedes consultar la información de una factura en concreto dando click en una de las filas</h4>
         
         <table class="table table-dark table-hover table-striped text-center box-shadow">
             <thead>
@@ -63,6 +94,29 @@
                     <td class="align-middle">82398423894024</td>
                     <td class="align-middle">5.034803942</td>
                 </tr>
+                <tr class="pointer">
+                    <td class="align-middle">20-07-2021</td>
+                    <td class="align-middle">5.00</td>
+                    <td class="align-middle">5.248243024</td>
+                    <td class="align-middle">82398423894024</td>
+                    <td class="align-middle">5.034803942</td>
+                </tr>
+                <tr class="pointer">
+                    <td class="align-middle">20-07-2021</td>
+                    <td class="align-middle">5.00</td>
+                    <td class="align-middle">5.248243024</td>
+                    <td class="align-middle">82398423894024</td>
+                    <td class="align-middle">5.034803942</td>
+                </tr>
+
+                <tr class="pointer">
+                    <td class="align-middle">20-07-2021</td>
+                    <td class="align-middle">5.00</td>
+                    <td class="align-middle">5.248243024</td>
+                    <td class="align-middle">82398423894024</td>
+                    <td class="align-middle">5.034803942</td>
+                </tr>
+
                 <tr class="pointer">
                     <td class="align-middle">20-07-2021</td>
                     <td class="align-middle">5.00</td>
