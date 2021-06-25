@@ -6,7 +6,6 @@ const { validateFields } = require('../middlewares/validate-fields');
 const { InvoicesGet,
         InvoiceGet,
         InvoicePost,
-        InvoicePostCSV,
         InvoicePut,
         InvoiceDelete, 
         InvoiceDeleteAll } = require('../controllers/invoices');

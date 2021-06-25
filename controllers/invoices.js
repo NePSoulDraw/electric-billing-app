@@ -49,7 +49,7 @@ const InvoicePost = async( req=request, res=response ) => {
 
      await invoice.save();
 
-     res.json({
+     res.status(200).json({
          invoice
      });
 
