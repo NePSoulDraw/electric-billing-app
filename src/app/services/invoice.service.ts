@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { InvoiceInfo } from '../models/InvoiceInfo';
+import { InvoiceSend } from '../models/InvoiceSend';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,41 @@ export class InvoiceService {
 
   getInvoices(): Observable<any>{
 
-    return this.http.get(this.pathInvoices);
+    return this.http.get(this.pathInvoices).pipe(
+      catchError( ( err ) => {
+        return of(err);
+      })
+    );
+
+  }
+
+  getInvoice( id:any ): Observable<any>{
+
+    return this.http.get(`${ this.pathInvoices }/${ id }`).pipe(
+      catchError( ( err ) => {
+        return of(err);
+      })
+    );
+
+  }
+
+  postInvoice( invoice: InvoiceSend ):Observable<any>{
+
+    return this.http.post(this.pathInvoices, invoice).pipe(
+      catchError( ( err ) => {
+        return of(err);
+      })
+    );
+
+  }
+
+  deleteAllInvoices(){
+
+    return this.http.delete(this.pathInvoices).pipe(
+      catchError( ( err ) => {
+        return of(err);
+      })
+    );
 
   }
 

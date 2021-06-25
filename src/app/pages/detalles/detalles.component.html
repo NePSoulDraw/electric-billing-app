@@ -3,11 +3,11 @@
 
         <h2 class="mb-5">Información de factura</h2>
 
-        <h4 class="mb-3">Fecha: </h4><h5 class="mb-5">23-07-2021</h5>
-        <h4 class="mb-3">Hora: </h4><h5 class="mb-5">17.30</h5>
-        <h4 class="mb-3">Consumo (Wh): </h4><h5 class="mb-5">2.3555453</h5>
-        <h4 class="mb-3">Precio (€/kWh): </h4><h5 class="mb-5">15.354534345</h5>
-        <h4 class="mb-3">Coste/Hora (€): </h4><h5>21</h5>
+        <h4 class="mb-3">Fecha: </h4><h5 class="mb-5">{{invoice['Fecha']}}</h5>
+        <h4 class="mb-3">Hora: </h4><h5 class="mb-5">{{invoice['Hora']}}</h5>
+        <h4 class="mb-3">Consumo (Wh): </h4><h5 class="mb-5">{{invoice['Consumo (Wh)']}}</h5>
+        <h4 class="mb-3">Precio (€/kWh): </h4><h5 class="mb-5">{{invoice['Precio (€/kWh)']}}</h5>
+        <h4 class="mb-3">Coste/Hora (€): </h4><h5>{{invoice['Coste por hora (€)']}}</h5>
     </div>
 </div>
 
@@ -18,6 +18,6 @@
     <div class="col text-center">
         <button class="btn btn-primary ms-3 me-3 mb-3">Editar</button>
         <button class="btn btn-danger ms-3 me-3 mb-3">Eliminar</button>
-        <button class="btn btn-info ms-3 me-3 mb-3">Volver</button>
+        <button class="btn btn-info ms-3 me-3 mb-3" routerLink="/inicio">Volver</button>
     </div>
 </div>
