@@ -46,7 +46,6 @@ const InvoicePost = async( req=request, res=response ) => {
      "Consumo (Wh)": consumo,
      "Precio (€/kWh)": precio,
      "Coste por hora (€)": costeHora });
-
      await invoice.save();
 
      res.status(200).json({

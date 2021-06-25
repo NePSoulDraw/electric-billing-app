@@ -22,7 +22,7 @@ const uploadFile = ( files, allowedExtensions = ['csv'] ) => {
               return reject(err);
             }
         
-            resolve( tempName );
+            resolve( [tempName, uploadPath] );
           });
       
     });
