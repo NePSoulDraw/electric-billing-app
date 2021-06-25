@@ -56,74 +56,15 @@
             </thead>
 
             <tbody>
-                <tr class="pointer">
-                    <td class="align-middle">20-07-2021</td>
-                    <td class="align-middle">5.00</td>
-                    <td class="align-middle">5.248243024</td>
-                    <td class="align-middle">82398423894024</td>
-                    <td class="align-middle">5.034803942</td>
+                <tr class="pointer" *ngFor="let invoice of invoices">
+                    <td class="align-middle">{{invoice['Fecha']}}</td>
+                    <td class="align-middle">{{invoice['Hora']}}</td>
+                    <td class="align-middle">{{invoice["Consumo (Wh)"]}}</td>
+                    <td class="align-middle">{{invoice["Precio (€/kWh)"]}}</td>
+                    <td class="align-middle">{{invoice["Coste por hora (€)"]}}</td>
                 </tr>
+                <div class="text-dark p-4" *ngIf="invoices.length == 0">No hay facturas en la base de datos</div>
 
-                <tr class="pointer">
-                    <td class="align-middle">20-07-2021</td>
-                    <td class="align-middle">5.00</td>
-                    <td class="align-middle">5.248243024</td>
-                    <td class="align-middle">82398423894024</td>
-                    <td class="align-middle">5.034803942</td>
-                </tr>
-
-                <tr class="pointer">
-                    <td class="align-middle">20-07-2021</td>
-                    <td class="align-middle">5.00</td>
-                    <td class="align-middle">5.248243024</td>
-                    <td class="align-middle">82398423894024</td>
-                    <td class="align-middle">5.034803942</td>
-                </tr>
-
-                <tr class="pointer">
-                    <td class="align-middle">20-07-2021</td>
-                    <td class="align-middle">5.00</td>
-                    <td class="align-middle">5.248243024</td>
-                    <td class="align-middle">82398423894024</td>
-                    <td class="align-middle">5.034803942</td>
-                </tr>
-                <tr class="pointer">
-                    <td class="align-middle">20-07-2021</td>
-                    <td class="align-middle">5.00</td>
-                    <td class="align-middle">5.248243024</td>
-                    <td class="align-middle">82398423894024</td>
-                    <td class="align-middle">5.034803942</td>
-                </tr>
-                <tr class="pointer">
-                    <td class="align-middle">20-07-2021</td>
-                    <td class="align-middle">5.00</td>
-                    <td class="align-middle">5.248243024</td>
-                    <td class="align-middle">82398423894024</td>
-                    <td class="align-middle">5.034803942</td>
-                </tr>
-                <tr class="pointer">
-                    <td class="align-middle">20-07-2021</td>
-                    <td class="align-middle">5.00</td>
-                    <td class="align-middle">5.248243024</td>
-                    <td class="align-middle">82398423894024</td>
-                    <td class="align-middle">5.034803942</td>
-                </tr>
-
-                <tr class="pointer">
-                    <td class="align-middle">20-07-2021</td>
-                    <td class="align-middle">5.00</td>
-                    <td class="align-middle">5.248243024</td>
-                    <td class="align-middle">82398423894024</td>
-                    <td class="align-middle">5.034803942</td>
-                </tr>
-
-                <tr class="pointer">
-                    <td class="align-middle">20-07-2021</td>
-                    <td class="align-middle">5.00</td>
-                    <td class="align-middle">5.248243024</td>
-                    <td class="align-middle">82398423894024</td>
-                    <td class="align-middle">5.034803942</td>
-                </tr>
             </tbody>
         </table>
 

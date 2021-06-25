@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { InvoiceInfo } from '../../models/InvoiceInfo';
+import { InvoiceSend } from '../../models/InvoiceSend'
+import { InvoiceService } from '../../services/invoice.service';
 
 @Component({
   selector: 'app-inicio',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
-  constructor() { }
+  public invoices: InvoiceInfo[] = [];
 
-  ngOnInit(): void {
+  constructor( private _invoiceService: InvoiceService ) { }
+
+  ngOnInit(){
+    this.getinvoices();
+    setTimeout( () => {
+
+      console.log(this.invoices);
+
+    }, 1500);
+  }
+
+  getinvoices(){
+
+    this._invoiceService.getInvoices().subscribe( (response: any) => {
+        this.invoices = response.invoices;
+    });
+
+
   }
 
 }
