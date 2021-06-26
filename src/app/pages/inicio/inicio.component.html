@@ -36,7 +36,16 @@
 
         <h4 class="mb-2 p-5">También puedes importar documentos CSV a la base de datos</h4>
 
-        <button class="btn-lg btn-success ps-5 pe-5">Subir documento CSV</button>
+        <button name="CSV" class="btn-lg btn-success ps-5 pe-5" (click)="loadCSV()">Subir documento CSV</button>
+
+        <input type="file"
+           class="mt-2 form-control"
+           name="saveCSV"
+           (change)="handleFileInput($event)" required>
+
+        <div class="mt-3 text-danger" *ngIf="csvState">Solo se admite formato .csv</div>
+
+        <div class="mt-3" *ngIf="alert">Subiendo, espere...</div>
 
         <h4 class="mb-2 p-5">Eliminar todo el registro</h4>
 

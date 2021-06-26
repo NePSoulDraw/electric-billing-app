@@ -11,13 +11,44 @@
     </div>
 </div>
 
-<!--Desplegar DIV oculto con formulario para edición de los datos al pulsar el botón editar-->
-<!--Desplegar SweetAlert2 con aviso de eliminación de factura, una vez hecho retorna a la página-->
+<!--Desplegar DIV oculto o SweetAlert2 con formulario para edición de los datos al pulsar el botón editar-->
+
+<form class="mt-3 mb-3 animate__animated animate__fadeIn" #formulario="ngForm" (ngSubmit)="updateInvoice(formulario)" *ngIf="form_state == true">
+    <div class="mb-3">
+      <label class="form-label" for="fecha">Fecha</label>
+      <input required maxlength="10" pattern="[0-9-]+" placeholder="26-06-2021" type="text" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="invoiceEdited.fecha">
+      <div class="form-text text-danger" *ngIf="!fecha.valid && !fecha.pristine">La fecha es obligaria y debe ser números (Entre 1-10 caracteres)</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="hora">Hora</label>
+      <input required maxlength="5" pattern="[0-9:.]+" placeholder="23.00" type="text" class="form-control" name="hora" #hora="ngModel" [(ngModel)]="invoiceEdited.hora">
+      <div class="form-text text-danger" *ngIf="!hora.valid && !hora.pristine">La hora es obligatoria y debe ser números (Entre 1-5 caracteres)</div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="consumo">Consumo (Wh)</label>
+        <input required maxlength="4" pattern="[0-9,.]+" placeholder="8.0" type="text" class="form-control" name="consumo" #consumo="ngModel" [(ngModel)]="invoiceEdited.consumo">
+        <div class="form-text text-danger" *ngIf="!consumo.valid && !consumo.pristine">La información de consumo es obligatoria y debe ser números (Entre 1-4 caracteres)</div>
+      </div>
+    <div class="mb-3">
+        <label class="form-label" for="precio">Precio (€/kWh)</label>
+        <input required maxlength="15" pattern="[0-9,.]+" placeholder="0.05784854" type="text" class="form-control" name="precio" #precio="ngModel" [(ngModel)]="invoiceEdited.precio">
+        <div class="form-text text-danger" *ngIf="!precio.valid && !precio.pristine">El precio es obligatorio y debe ser números (Entre 1-15 caracteres)</div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="coste">Coste/Hora (€)</label>
+        <input required maxlength="15" pattern="[0-9,.]+" placeholder="7.284092358925" type="text" class="form-control" name="coste" #coste="ngModel" [(ngModel)]="invoiceEdited.costeHora">
+        <div class="form-text text-danger" *ngIf="!coste.valid && !coste.pristine">El coste por hora es obligatorio y debe ser números (Entre 1-15 caracteres)</div>
+    </div>
+     <div class="text-center">
+         <button type="submit" class="btn btn-success" [disabled]="!formulario.valid">Guardar cambios</button>
+
+     </div> 
+</form>
 
 <div class="row mt-5 animate__fadeIn animate__animated">
     <div class="col text-center">
-        <button class="btn btn-primary ms-3 me-3 mb-3">Editar</button>
-        <button class="btn btn-danger ms-3 me-3 mb-3">Eliminar</button>
+        <button class="btn btn-primary ms-3 me-3 mb-3" (click)="showForm()">Editar</button>
+        <button class="btn btn-danger ms-3 me-3 mb-3" (click)="deleteInvoice()">Eliminar</button>
         <button class="btn btn-info ms-3 me-3 mb-3" routerLink="/inicio">Volver</button>
     </div>
 </div>
