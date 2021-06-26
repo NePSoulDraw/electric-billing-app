@@ -3,35 +3,35 @@
     <div class="col mb-5 pb-5 text-center">
 
         <h4 class="mb-2 p-5">Puedes crear una factura de forma manual, en el siguiente formulario</h4>
-        <!-- Añadir patterns de numeros para las validaciones de formulario y boton submit disabled en funcion del estado -->
+
         <form class="mt-3 mb-3 " #formulario="ngForm" (ngSubmit)="postInvoice(formulario)">
             <div class="mb-3">
-              <label class="form-label" for="date">Fecha</label>
-              <input type="text" class="form-control" name="date" #fecha="ngModel" [(ngModel)]="invoiceForm.fecha" minlength="1">
-              <div class="form-text text-danger">La fecha es obligaria</div>
+              <label class="form-label" for="fecha">Fecha</label>
+              <input required maxlength="10" pattern="[0-9-]+" placeholder="26-06-2021" type="text" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="invoiceForm.fecha">
+              <div class="form-text text-danger" *ngIf="!fecha.valid && !fecha.pristine">La fecha es obligaria y debe ser números (Entre 1-10 caracteres)</div>
             </div>
             <div class="mb-3">
-              <label class="form-label" for="time">Hora</label>
-              <input type="text" class="form-control" name="time" #hora="ngModel" [(ngModel)]="invoiceForm.hora" minlength="1">
-              <div class="form-text text-danger">La hora es obligatoria</div>
+              <label class="form-label" for="hora">Hora</label>
+              <input required maxlength="5" pattern="[0-9:.]+" placeholder="23.00" type="text" class="form-control" name="hora" #hora="ngModel" [(ngModel)]="invoiceForm.hora">
+              <div class="form-text text-danger" *ngIf="!hora.valid && !hora.pristine">La hora es obligatoria y debe ser números (Entre 1-5 caracteres)</div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="consumoWh">Consumo (Wh)</label>
-                <input type="text" class="form-control" name="consumoWh" #consumo="ngModel" [(ngModel)]="invoiceForm.consumo" minlength="1">
-                <div class="form-text text-danger">La información de consumo es obligatoria</div>
+                <label class="form-label" for="consumo">Consumo (Wh)</label>
+                <input required maxlength="4" pattern="[0-9,.]+" placeholder="8.0" type="text" class="form-control" name="consumo" #consumo="ngModel" [(ngModel)]="invoiceForm.consumo">
+                <div class="form-text text-danger" *ngIf="!consumo.valid && !consumo.pristine">La información de consumo es obligatoria y debe ser números (Entre 1-4 caracteres)</div>
               </div>
             <div class="mb-3">
-                <label class="form-label" for="price">Precio (€/kWh)</label>
-                <input type="text" class="form-control" name="price" #precio="ngModel" [(ngModel)]="invoiceForm.precio" minlength="1">
-                <div class="form-text text-danger">El precio es obligatorio</div>
+                <label class="form-label" for="precio">Precio (€/kWh)</label>
+                <input required maxlength="15" pattern="[0-9,.]+" placeholder="0.05784854" type="text" class="form-control" name="precio" #precio="ngModel" [(ngModel)]="invoiceForm.precio">
+                <div class="form-text text-danger" *ngIf="!precio.valid && !precio.pristine">El precio es obligatorio y debe ser números (Entre 1-15 caracteres)</div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="cost">Coste/Hora (€)</label>
-                <input type="text" class="form-control" name="cost" #coste="ngModel" [(ngModel)]="invoiceForm.costeHora" minlength="1">
-                <div class="form-text text-danger">El coste por hora es obligatorio</div>
+                <label class="form-label" for="coste">Coste/Hora (€)</label>
+                <input required maxlength="15" pattern="[0-9,.]+" placeholder="7.284092358925" type="text" class="form-control" name="coste" #coste="ngModel" [(ngModel)]="invoiceForm.costeHora">
+                <div class="form-text text-danger" *ngIf="!coste.valid && !coste.pristine">El coste por hora es obligatorio y debe ser números (Entre 1-15 caracteres)</div>
             </div>
               
-            <button type="submit" class="btn btn-success" disabled="!formulario.valid">Crear factura</button>
+            <button type="submit" class="btn btn-success" [disabled]="!formulario.valid">Crear factura</button>
         </form>
 
         <h4 class="mb-2 p-5">También puedes importar documentos CSV a la base de datos</h4>
@@ -48,29 +48,31 @@
         <!-- Añadir botón de eliminar todo el registro -->
         <h4 class="mb-2 p-5">Puedes consultar la información de una factura en concreto dando click en una de las filas</h4>
         
-        <table class="table table-dark table-hover table-striped text-center box-shadow">
-            <thead>
-                <tr>
-                    <td class="align-middle">Fecha</td>
-                    <td class="align-middle">Hora</td>
-                    <td class="align-middle">Consumo (Wh)</td>
-                    <td class="align-middle">Precio (€/kWh)</td>
-                    <td class="align-middle">Coste/Hora (€)</td>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr class="pointer" *ngFor="let invoice of invoices" (click)="goDetails(invoice['id'])">
-                    <td class="align-middle">{{invoice['Fecha']}}</td>
-                    <td class="align-middle">{{invoice['Hora']}}</td>
-                    <td class="align-middle">{{invoice["Consumo (Wh)"]}}</td>
-                    <td class="align-middle">{{invoice["Precio (€/kWh)"]}}</td>
-                    <td class="align-middle">{{invoice["Coste por hora (€)"]}}</td>
-                </tr>
-                <div class="text-dark p-4" *ngIf="invoices.length == 0">No hay facturas en la base de datos</div>
-
-            </tbody>
-        </table>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table table-dark table-hover table-striped text-center box-shadow">
+                <thead>
+                    <tr>
+                        <td class="align-middle">Fecha</td>
+                        <td class="align-middle">Hora</td>
+                        <td class="align-middle">Consumo (Wh)</td>
+                        <td class="align-middle">Precio (€/kWh)</td>
+                        <td class="align-middle">Coste/Hora (€)</td>
+                    </tr>
+                </thead>
+    
+                <tbody class="table_scrolling">
+                    <tr class="pointer tr_table" *ngFor="let invoice of invoices" (click)="goDetails(invoice['id'])">
+                        <td class="align-middle">{{invoice['Fecha']}}</td>
+                        <td class="align-middle">{{invoice['Hora']}}</td>
+                        <td class="align-middle">{{invoice["Consumo (Wh)"]}}</td>
+                        <td class="align-middle">{{invoice["Precio (€/kWh)"]}}</td>
+                        <td class="align-middle">{{invoice["Coste por hora (€)"]}}</td>
+                    </tr>
+                    <div class="text-dark p-4" *ngIf="invoices.length == 0">No hay facturas en la base de datos</div>
+    
+                </tbody>
+            </table>
+        </div>
 
 
         

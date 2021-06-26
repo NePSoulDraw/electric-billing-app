@@ -15,6 +15,8 @@ export class InicioComponent implements OnInit {
 
   public invoices: InvoiceInfo[] = [];
 
+  public state: boolean = false;
+
   public invoiceForm: InvoiceSend = {
     fecha: '',
     hora: '',
@@ -48,6 +50,19 @@ export class InicioComponent implements OnInit {
     this._invoiceService.postInvoice(this.invoiceForm).subscribe( resp => {
       this.getinvoices();
       formulario.reset();
+      const aviso = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 4000,
+        timerProgressBar: true
+      });
+
+      aviso.fire({
+        icon: 'success',
+        title: 'Se ha creado una nueva factura'
+      });
+      
     });
   }
 
@@ -71,7 +86,7 @@ export class InicioComponent implements OnInit {
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000,
+            timer: 4000,
             timerProgressBar: true
           });
 
